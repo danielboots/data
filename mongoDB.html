@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Javascript Notes</title>
+	<link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body>
+
+
+
+
+<h2>MongoDB</h2>
+<p>A highly scalable database server.</p>
+<iframe width="789" height="444" src="https://www.youtube.com/embed/VL3x1lEjEBs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p> how do we use it! You use MongoDB Atlas, which is a Database-as-a-Service, to create and host your Database in the cloud.</p>
+
+
+<p>NOTE: Special Characters in MongoDB Atlas Usernames and Passwords.
+After creating your cluster, we add a SCRAM username and password at 2:17 in this video.
+Do not use any non-alphanumeric characters (e.g.: ?, %,@ or &) in your username or password!
+If you do use any of these "special" characters then, due to a bug in MongoDB's URI parser, you will not be able to connect to your database using Python later in the lesson. We recommend using a combination of upper- and lower-case letters, and numbers for your database password.</p>
+
+
+
+<h3>Create mongo in the cloud; </h3>
+
+<iframe width="789" height="444" src="https://www.youtube.com/embed/sOwFaLhvFzg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h4>setting up mongo</h4>
+<a href="https://github.com/Code-Institute-Solutions/MongoDB/blob/master/01-CreateAMongoDBDatabase/01-create_a_mongodb_database/mongoSetup.md" target="_blank">link to mongo ref</a>
+
+
+<h3> Create And Read Back Data
+
+</h3>
+<p>Running commands (insert, find and sort) from the command line to update your MongoDB Database.
+
+The insert command allows you to create new database entries. The find and sort commands allow you to query and read back existing database entries.
+
+By including your database credentials and your Mongo method (insert, find, sort) in your command.
+
+</p>
+
+
+<iframe width="737" height="415" src="https://www.youtube.com/embed/6Y4E01G3lYs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h4>notes from video: on mongo site clusters and connect go to run connection in the command line</h4>
+<p> mongo "mongodb+srv://myfirstcluster.ryoir.mongodb.net/myFirstDB" --username root  </p>
+
+<h4>MONGO commands</h4>
+
+<a href="https://github.com/Code-Institute-Solutions/MongoDB/blob/master/02-ManipulateDataUsingMongoShell/01-create_and_read_back_data/mongoCommands.md#gitpod" target="_blank" >Commands</a>
+
+
+<p>connect to mongo: </p>
+<p>using the above database from cluster and put in to terminal, enter password and we are rocking.</p>
+<p>clear terminal CLS </p>
+<p>to prove we are connected use the command : show collections, this will return a list of our collections which in this case is 'celebrities' </p>
+<p>we can reassign this to a variable so we do this to make our lives easier and </p>
+
+<pre> coll = db.celebrities </pre>
+
+<h3>adding new data </h3>
+
+<pre>insert method 
+coll.insert({first: "john", last: "lennon", dob: "09/10/1940", gender: "m", hair_color: "brown", occupation: "beatle", nationality: "british"});
+</pre>
+<p>if entered correct this will result in the terminal replying with: WriteResult({ "nInserted" : 1 }) </p>
+
+<h3>finding records </h3>
+<p>standard command: coll.find()</p>
+
+<ol>
+<li>coll.find()</li>
+<li>coll.find({gender: "f"})</li>
+<li>coll.find({gender: "f", nationality: "british"})</li>
+<li>coll.find({gender: "f", $or: [{nationality: "british"}, {nationality: "irish"}]});</li>
+
+<p>sorting:</p>
+<li>coll.find({gender: "f", $or: [{nationality: "british"}, {nationality: "irish"}]}).sort({nationality: 1});</li>
+<p>1 for ascending A-Z  -1 for descending Z-A</p>
+</ol>
+
+
+
+<h3>update and delete data</h3>
+<p>Running commands (update and remove) from the command line to update your MongoDB Database.
+The update command allows you to update existing database entries. The remove command allows you to delete existing database entries.
+
+
+</p>
+
+
+<iframe width="737" height="415" src="https://www.youtube.com/embed/vgmxWNkGdUA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h4>updating records</h4>
+
+<ol>
+<p>update only the first record</p>
+<li>coll.update({nationality: "irish"}, {$set: {hair_color: "blue"}});</li>
+<p>update all records</p>
+<li>coll.update({nationality: "irish"}, {$set: {hair_color: "purple"}}, {multi: true});</li>
+
+</ol>
+
+
+<h4>Delete records</h4>
+
+<ol>
+<li>coll.remove({first: "kate", last: "bush"});</li>
+</ol>
+
+
+<h3> Run Mongo Commands From A Python File __ this lesson contains how to connect to mongo create git ignore files to hide shit! IMPORTANT LESSON
+</h3>
+<p>
+Using Python to run your Mongo commands.
+</p>
+ 
+
+<iframe width="737" height="415" src="https://www.youtube.com/embed/mLW6HFtZ7OU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p> in the terminal we need to install a package called 'dnspython', so type: pip3 install dnspython.</p>
+<p>also install pip3 install pymongo</p>
+
+
+</body></html>
