@@ -55,8 +55,46 @@ Put database commands in a .sql file, and run them using the mysql command line 
 
 
 
-<h2>SQL </h2>
-<p></p>
+<h2>SQL commands </h2>
+<p>import the Chinook database from a sql file : use command</p>
+
+<ul>
+<li>wgethttps://raw.githubusercontent.com/lerocha/chinook-database/master/ChinookDatabase/DataSources/Chinook_MySql_AutoIncrementPKs.sql </li>
+
+<li>to run the script: mysql -v < Chinook_MySql_AutoIncrementPKs.sql </li>
+<li>show databases : will now show the chinook database</li>
+<li> use Chinook</li>
+<li>desc genre : will return the genre tables data types etc Autoincremement etc </li>
+<li>log all data : tee file.txt</li>
+<li>end logging : notee </li>
+<li>run script: test.sql = (from the terminal) source test.sql</li>
+
+<h3>Query the database CRUD</h3>
+<li>SELECT</li>
+<li>INSERT</li>
+<li>UPDATE</li>
+<li>DELETE</li>
+
+
+<h3>commands: </h3>
+
+<li>SELECT * FROM Album; </li>
+<li>SELECT * FROM Album LIMIT 5;  (returns first 5 results)</li>
+
+<h3>join keyword (same common fields such as artist id etc</h3>
+
+<li>SELECT Title, Name From Album</li>
+<li>JOIN Artist ON Album.ArtistId = Artist.ArtistId (this means artist id on artist album is the same as artist id on artist table.)</li>
+<li>DESC Genre </li>
+<h3>Insert a new genre </h3>
+<li>INSERT INTO Genre (Name) VALUES ('Trad');</li>
+<h3>See last insert (in this case TRAD</h3>
+<li>SELECT LAST_INSERT_ID();</li>
+
+<h3>to query when we find out the ID </h3>
+<li></li>
+
+</ul>
 
 <h2>SQL </h2>
 <p></p>
