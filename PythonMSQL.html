@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Javascript Notes</title>
+	<link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body>
+
+
+
+	<h1>mysql Python</h1>
+
+	<iframe width="789" height="444" src="https://www.youtube.com/embed/5FgoZr5piOk" frameborder="0"
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+		allowfullscreen></iframe>
+
+	<h2>installing python mysql library</h2>
+	<p>command is : pip3 install pymysql</p>
+	<p>create a new file mysql-from-python.py</p>
+
+
+	<h2>IMPORTANT .py file </h2>
+	<pre>import os
+import pymysql
+
+# Get username from Cloud9 workspace
+# (modify this variable if running on another environment)
+username = 'root'
+
+# Connect to the database
+connection = pymysql.connect(host='localhost',
+                             user=username,
+                             password='',
+                             db='Chinook')
+
+try:
+    # Run a query - if create an argument to return dictionary use cursors argument pymysql.cursors.DictCursor
+    with connection.cursor(pymysql.cursors.DictCursor) as cursor:
+        # sql = "SELECT * FROM Artist;"
+        sql = "SELECT * FROM Genre;"
+        cursor.execute(sql)
+        for row in cursor:
+            print(row)
+        # result = cursor.fetchall()
+        # print(result)
+finally:
+    # Close the connection, regardless of whether or not the above was successful
+    connection.close()</pre>
+
+
+
+	<h3>creating new empty data base entry</h3>
+	<iframe width="789" height="444" src="https://www.youtube.com/embed/nJDtBZkco8I" frameborder="0"
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+		allowfullscreen></iframe>
+
+
+	<h2>video links: </h2>
+
+	<h4>Cursors</h4>
+
+	<iframe width="789" height="444" src="https://www.youtube.com/embed/1ic0Se7yroE" frameborder="0"
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+		allowfullscreen></iframe>
+
+	<pre>import os
+import pymysql
+
+# Get the username from the Cloud9 workspace
+# (modify this variable if running on another environment)
+username = 'root'
+
+# Connect to the database
+connection = pymysql.connect(host='localhost',
+                             user=username,
+                             password='',
+                             db='Chinook')
+
+try:
+    with connection.cursor(pymysql.cursors.DictCursor) as cursor:
+        sql = "SELECT * FROM Genre;"
+        cursor.execute(sql)
+        for row in cursor:
+            print(row)
+finally:
+    connection.close()</pre>
+
+
+	<h4>Create a table</h4>
+	<iframe width="789" height="444" src="https://www.youtube.com/embed/nJDtBZkco8I" frameborder="0"
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+		allowfullscreen></iframe>
+
+	<pre>import os
+import datetime
+import pymysql
+
+# Get the username from the Cloud9 workspace
+# (modify this variable if running on another environment)
+username = 'root'
+
+# Connect to the database
+connection = pymysql.connect(host='localhost',
+                             user=username,
+                             password='',
+                             db='Chinook')
+
+try:
+    with connection.cursor() as cursor:
+        cursor.execute("""CREATE TABLE IF NOT EXISTS
+                          Friends(name char(20), age int, DOB datetime);""")
+        # Note that the above will still display a warning (not error) if the
+        # table already exists
+finally:
+    connection.close()</pre>
+
+	<h4>insert</h4>
+
+	<iframe width="789" height="444" src="https://www.youtube.com/embed/SAh48FfDDzE" frameborder="0"
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+		allowfullscreen></iframe>
+
+
+	<pre>import os
+import datetime
+import pymysql
+
+# Get the username from the Cloud9 workspace
+# (modify this variable if running on another environment)
+username = 'root'
+
+# Connect to the database
+connection = pymysql.connect(host='localhost',
+                             user=username,
+                             password='',
+                             db='Chinook')
+
+try:
+    with connection.cursor() as cursor:
+        rows = [("bob", 21, "1990-02-06 23:04:56"),
+                ("jim", 56, "1955-05-09 13:12:45"),
+                ("fred", 100, "1911-09-12 01:01:01")]
+        cursor.executemany("INSERT INTO Friends VALUES (%s,%s,%s);", rows)
+        connection.commit()
+finally:
+    connection.close()</pre>
+
+
+	<h4>Execute Many</h4>
+
+	<iframe width="789" height="444" src="https://www.youtube.com/embed/nVQAb_B0lvI" frameborder="0"
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+		allowfullscreen></iframe>
+
+	<pre>
+import os
+import datetime
+import pymysql
+
+# Get the username from the Cloud9 workspace
+# (modify this variable if running on another environment)
+username = 'root'
+
+# Connect to the database
+connection = pymysql.connect(host='localhost',
+                             user=username,
+                             password='',
+                             db='Chinook')
+
+try:
+    with connection.cursor() as cursor:
+        rows = [("bob", 21, "1990-02-06 23:04:56"),
+                ("jim", 56, "1955-05-09 13:12:45"),
+                ("fred", 100, "1911-09-12 01:01:01")]
+        cursor.executemany("INSERT INTO Friends VALUES (%s,%s,%s);", rows)
+        connection.commit()
+finally:
+    connection.close()</pre>
+
+
+
+
+	<h4>Update</h4>
+	<iframe width="789" height="444" src="https://www.youtube.com/embed/qYsr8_UBQBo" frameborder="0"
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+		allowfullscreen></iframe>
+
+
+	<pre>import os
+import pymysql
+
+# Get the username from the Cloud9 workspace
+# (modify this variable if running on another environment)
+username = 'root'
+
+# Connect to the database
+connection = pymysql.connect(host='localhost',
+                             user=username,
+                             password='',
+                             db='Chinook')
+try:
+    with connection.cursor() as cursor:
+        cursor.execute("UPDATE Friends SET age = 22 WHERE name = 'bob';")
+        connection.commit()
+finally:
+    connection.close()</pre>
+
+
+	<h4> Alternate Update</h4>
+
+	<iframe width="789" height="444" src="https://www.youtube.com/embed/Lbshh2P72_E" frameborder="0"
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+		allowfullscreen></iframe>
+
+	<pre>import os
+import pymysql
+
+# Get the username from the Cloud9 workspace
+# (modify this variable if running on another environment)
+username = 'root'
+
+# Connect to the database
+connection = pymysql.connect(host='localhost',
+                             user=username,
+                             password='',
+                             db='Chinook')
+try:
+    with connection.cursor() as cursor:
+        cursor.execute("UPDATE Friends SET age = %s WHERE name = %s;",
+                       (23, 'bob'))
+        connection.commit()
+finally:
+    connection.close()</pre>
+
+
+
+	<h4> Update Many</h4>
+
+	<iframe width="789" height="444" src="https://www.youtube.com/embed/2VjIXSiXieM" frameborder="0"
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+		allowfullscreen></iframe>
+
+<pre>import os
+import pymysql
+
+# Get the username from the Cloud9 workspace
+# (modify this variable if running on another environment)
+username = 'root'
+
+# Connect to the database
+connection = pymysql.connect(host='localhost',
+                             user=username,
+                             password='',
+                             db='Chinook')
+try:
+    with connection.cursor() as cursor:
+        rows = [(23, 'bob'),
+                (24, 'jim'),
+                (25, 'fred')]
+        cursor.executemany("UPDATE Friends SET age = %s WHERE name = %s;",
+                           rows)
+        connection.commit()
+finally:
+    connection.close()</pre>
+
+
+<h4>Delete</h4>
+
+<iframe width="789" height="444" src="https://www.youtube.com/embed/hzi6bkPGT4s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<pre>import os
+import pymysql
+
+# Get the username from the Cloud9 workspace
+# (modify this variable if running on another environment)
+username = 'root'
+
+# Connect to the database
+connection = pymysql.connect(host='localhost',
+                             user=username,
+                             password='',
+                             db='Chinook')
+try:
+    with connection.cursor() as cursor:
+        rows = cursor.execute("DELETE FROM Friends WHERE name = 'bob';")
+        connection.commit()
+finally:
+    connection.close()</pre>
+
+
+    <h4> Alternate Delete
+</h4>
+<iframe width="789" height="444" src="https://www.youtube.com/embed/RzmLbtLk3Jo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<pre>import os
+import pymysql
+
+# Get the username from the Cloud9 workspace
+# (modify this variable if running on another environment)
+username = 'root'
+
+# Connect to the database
+connection = pymysql.connect(host='localhost',
+                             user=username,
+                             password='',
+                             db='Chinook')
+
+try:
+    with connection.cursor() as cursor:
+        rows = cursor.execute("DELETE FROM Friends WHERE name = %s;", 'bob')
+        connection.commit()
+finally:
+    connection.close()</pre>
+
+
+
+<h4> Delete Many
+</h4>
+
+<iframe width="789" height="444" src="https://www.youtube.com/embed/272FBCDHRWU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<pre>import os
+import pymysql
+
+# Get the username from the Cloud9 workspace
+# (modify this variable if running on another environment)
+username = 'root'
+
+# Connect to the database
+connection = pymysql.connect(host='localhost',
+                             user=username,
+                             password='',
+                             db='Chinook')
+
+try:
+    with connection.cursor() as cursor:
+        rows = cursor.executemany("DELETE FROM Friends WHERE name = %s;", ['bob', 'jim'])
+        connection.commit()
+finally:
+    connection.close()</pre>
+
+<h4> Delete Where In - deleting multiple entries.
+</h4>
+
+
+<iframe width="789" height="444" src="https://www.youtube.com/embed/GWLoZE1mj14" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+<pre>import os
+import pymysql
+
+# Get the username from the Cloud9 workspace
+# (modify this variable if running on another environment)
+username = 'root'
+
+# Connect to the database
+connection = pymysql.connect(host='localhost',
+                             user=username,
+                             password='',
+                             db='Chinook')
+try:
+    with connection.cursor() as cursor:
+        list_of_names = ['fred', 'Fred']
+        # Prepare a string with same number of placeholders as in list_of_names
+        format_strings = ','.join(['%s'] * len(list_of_names))
+        cursor.execute(
+            "DELETE FROM Friends WHERE name in ({});".format(format_strings),
+            list_of_names)
+
+        connection.commit()
+finally:
+    connection.close()</pre>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

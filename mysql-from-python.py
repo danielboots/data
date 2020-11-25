@@ -1,7 +1,6 @@
 import os
 import pymysql
 
-# Get username from Cloud9 workspace
 # (modify this variable if running on another environment)
 username = 'root'
 
@@ -11,13 +10,19 @@ connection = pymysql.connect(host='localhost',
                              password='',
                              db='Chinook')
 
+
+# Return results as a dictionary
 try:
-    # Run a query
-    with connection.cursor() as cursor:
-        sql = "SELECT * FROM Artist;"
+    # Run a query - if create an argument to return dictionary use cursors argument pymysql.cursors.DictCursor
+    with connection.cursor(pymysql.cursors.DictCursor) as cursor:
+        # sql = "SELECT * FROM Artist;"
+        sql = "SELECT * FROM Genre;"
         cursor.execute(sql)
-        result = cursor.fetchall()
-        print(result)
+        for row in cursor:
+            print(row)
+        # result = cursor.fetchall()
+        # print(result)
+
 finally:
     # Close the connection, regardless of whether or not the above was successful
     connection.close()
