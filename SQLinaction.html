@@ -38,7 +38,137 @@ Retrieves data from a specified list of columns in a table
 
             <iframe width="801" height="451" src="https://www.youtube.com/embed/-qCGSspZ7mM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+
+<h3>example</h3>
+            <ul>
+            <li> SELECT Name from Artist; </li>
+            <p>will return all rows names etc</p>
+            <li>select FirstName,LastName from Customer;</li>
+            <li>SELECT * FROM Track;</li>
+            <li> SELECT Name FROM MediaType;</li>
+            </ul>
+
 <h2>WHERE Clause</h2>
+
+<p>filtering the results using the WHERE clause</p>
+<p>example </p>
+<li>SELECT * FROM Track WHERE Composer = 'U2';</li>
+<li>SELECT * FROM Album WHERE AlbumID =232;</li>
+
+
+<h2>JOIN</h2>
+
+<p>A way of linking multiple tables together so that a SELECT can pull data from all of them
+
+Identifies the columns that must match in order for two rows in different tables to be considered "related"
+
+In the FROM part of a SELECT statement, after naming a table to pull data from, then use the JOIN and ON keywords to link to another table
+
+</p>
+
+<iframe width="789" height="444" src="https://www.youtube.com/embed/ZmXJ32Xlk5s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 </body>
 </html>
+
+<h3>ORDER BY</h3>
+<p>CLause</p>
+<p>An SQL command to sort tables
+
+</p>
+
+<li>SELECT * FROM Album</li>
+<li>ORDER BY Title;</li>
+<li>ORDER BY ArtistId</li>
+<li>ETC ETC ETC </li>
+<li>ORDER BY Tracktitle, TrackName;</li>
+
+<h3>Count FUnction</h3>
+
+<p>Returns the number of rows in a query result, or group
+
+</p>
+
+<ul>
+<li>SELECT COUNT(FirstName) FROM Customer;</li>
+<li>using filtering with this;; WHERE FirstName = 'Frank'</li>
+
+
+</ul>
+
+<pre>SELECT COUNT(FirstName) FROM Customer
+    WHERE FirstName ='Frank';</pre>
+
+
+<h3>min function</h3>
+
+<p>Returns the minimum value from a specified column in a query result or group
+
+MIN(column) or MIN(expression)
+
+</p>
+<ul><li>SELECT MIN(LastName) FROM Customer;</li></ul>
+
+<h3>same for MAX </h3>
+
+<pre> SELECT MAX (LastName)FROM Customer;</pre>
+
+
+<h3>
+AVG function</h3>
+
+<pre> SELECT AVG(Total) FROM Invoice;</pre>
+
+<h3>Round function</h3>
+<pre>SELECT ROUND(AVG(Total), 2) FROM Invoice;</pre>
+
+<h3>SUM function</h3>
+
+<pre> SELECT TOTAL FROM Invoice 
+WHERE InvoiceId = '2'</pre>
+
+<pre>SELECT SUM(UnitPrice * Quantity) FROM InvoiceLine
+WHERE InvoiceId =2;</pre>
+
+
+<h3>GROUP BY Clause</h3>
+<p>Often, what we really want to do is group our data into a number of subsets and use the aggregate functions on each of those.
+For example, counting how many tracks use each of the five different media types.
+SQL provides a group by feature that allows us to do this.
+Here, we will group by the AlbumID in the track table and show the number of rows in each group.</p>
+
+<iframe width="789" height="444" src="https://www.youtube.com/embed/NFuwSLy2r30" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<pre>SELECT AlbumID, COUNT(*) FROM Track</pre>
+<pre>GROUP BY AlbumId;</pre>
+
+<pre>SELECT Album.Title,COUNT(*) FROM Track </pre>
+<pre>INNER JOIN Album ON Track.AlbumId = Album.AlbumId</pre>
+<pre>GROUP BY Track.AlbumId;</pre>
+
+<h3>INSERT</h3>
+
+<p>A statement for adding new data to a relational database table
+
+</p>
+<iframe width="789" height="444" src="https://www.youtube.com/embed/S7sToZSMeRQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p> INSERT INTO MediaTYPE (Name)</p>
+<p>VALUES('Test Media Type 1');</p>
+
+
+<h4>Adding multiple:</h4>
+
+<pre>INSERT INTO Album (Title, ArtistID)
+    VALUES('Boy', 150);
+</pre>
+
+<pre>INSERT INTO Track (Name, AlbumID, MediaTypeId, GenreID, Composer, Milliseconds, Bytes, UnitPrice</pre>
+<pre> VALUES (Insert values here.)</pre>
+
+<h3>finding values; </h3>
+
+<pre>SELECT AlbumId FROM Album WHERE title = 'Boy';</pre>
+<pre>SELECT MediaTypeId FROM MediaType WHERE Name = 'Protected AAC Audio file';</pre>
+<pre>SELECT GenreId FROM Genre WHERE Name = 'Rock';</pre>
+
